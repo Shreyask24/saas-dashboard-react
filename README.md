@@ -1,16 +1,88 @@
-# React + Vite
+# SaaS Dashboard — React Implementation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern SaaS analytics dashboard built with **React**, focused on **pixel-perfect** implementation of the provided Figma design.  
+The goal of this project is to showcase strong UI engineering, theme consistency, polished data visualization, and thoughtful microinteractions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
 
-## React Compiler
+- **Deployed App:** _add your Vercel / Netlify URL here_  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Frontend
+
+- React (ES6+)
+- Vite / Create React App _(replace this line with what you actually used)_
+- Tailwind CSS
+- Material UI (MUI)
+- Recharts
+- Framer Motion
+
+### Enhancements
+
+- Custom Theme Context (light/dark mode with persistence)
+- Responsive CSS grid layout
+- Microinteractions using Framer Motion and subtle hover states
+- Modular component architecture for easy extension
+
+---
+
+## Design Fidelity
+
+This project was implemented with a strong focus on matching the provided Figma design as closely as possible:
+
+- Typography (font sizes, weights, and line-heights)
+- Spacing (padding, margins, and gaps between sections)
+- Sidebar and top header layout
+- Dashboard statistic cards and their hover behavior
+- Chart styling (colors, line thickness, gradients, legends)
+- Table and pagination styling
+- Dark mode color system and surface elevations
+
+Where small deviations were necessary (e.g., library defaults), they were adjusted to remain visually consistent with the original design.
+
+---
+
+## Dark Mode
+
+Dark mode is implemented using a **custom Theme Context**, not just Tailwind’s `dark:` classes, so that:
+
+- Tailwind utilities, MUI components, and Recharts can share the same theme state
+- The current theme is stored in `localStorage` and restored on reload
+- Backgrounds, text, borders, and icons stay readable in both themes
+- Charts (axes, gridlines, tooltips, legend) remain clear in dark mode
+- Tables, inputs, and cards are visually balanced on both themes
+
+The aim was to make theme switching feel natural and avoid any “flashing” or broken styles.
+
+---
+
+## Motion & Microinteractions
+
+The interface uses subtle motion to improve perceived quality without being distracting:
+
+- Statistic cards scale slightly on hover
+- Sidebar collapse/expand is animated smoothly
+- Icon buttons provide visual feedback
+- Theme toggle feels responsive and immediate
+
+All animations are intentionally lightweight and focused on user feedback, not on flashy effects.
+
+---
+
+## Responsiveness
+
+The layout adapts across common screen sizes:
+
+- Desktop and widescreen
+- Standard laptop widths
+- Tablet layouts (cards and charts stack or resize)
+- Mobile-friendly stacking where appropriate
+
+The DataGrid and main content area remain scrollable and usable even on smaller viewports, and the sidebar can be collapsed to save space.
+
+---
