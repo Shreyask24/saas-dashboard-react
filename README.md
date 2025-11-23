@@ -1,88 +1,145 @@
-# SaaS Dashboard — React Implementation
+# SaaS Dashboard React Implementation
 
-A modern SaaS analytics dashboard built with **React**, focused on **pixel-perfect** implementation of the provided Figma design.  
-The goal of this project is to showcase strong UI engineering, theme consistency, polished data visualization, and thoughtful microinteractions.
+A fully responsive, pixel-perfect SaaS analytics dashboard built using **React**, based on the provided assignment design specification.  
+This project focuses on **UI fidelity, microinteractions, clean component architecture, dark mode consistency, and dashboard data representation.**
 
 ---
 
 ## Live Demo
 
-- **Deployed App:** _add your Vercel / Netlify URL here_  
+**Deployed App:** https://shreyas-saas-ui.netlify.app/  
+(Accessible without login, optimized for desktop and laptop viewports)
 
 ---
 
 ## Tech Stack
 
-### Frontend
+### Frontend Framework
+- **React (Vite build setup)**
 
-- React (ES6+)
-- Vite / Create React App _(replace this line with what you actually used)_
-- Tailwind CSS
-- Material UI (MUI)
-- Recharts
-- Framer Motion
+### UI & Styling
+- **Tailwind CSS**
+- **Material UI (MUI)**
+- CSS utility composition for spacing + layout
 
-### Enhancements
+### Charts & Visualization
+- **Recharts** for clean dashboard analytics
 
-- Custom Theme Context (light/dark mode with persistence)
-- Responsive CSS grid layout
-- Microinteractions using Framer Motion and subtle hover states
-- Modular component architecture for easy extension
+### Motion & Interactions
+- **Framer Motion** for subtle meaningful animations
 
----
-
-## Design Fidelity
-
-This project was implemented with a strong focus on matching the provided Figma design as closely as possible:
-
-- Typography (font sizes, weights, and line-heights)
-- Spacing (padding, margins, and gaps between sections)
-- Sidebar and top header layout
-- Dashboard statistic cards and their hover behavior
-- Chart styling (colors, line thickness, gradients, legends)
-- Table and pagination styling
-- Dark mode color system and surface elevations
-
-Where small deviations were necessary (e.g., library defaults), they were adjusted to remain visually consistent with the original design.
+### State & Theme Handling
+- Custom React Context for:
+  - Light / Dark mode sync
+  - LocalStorage persistence
 
 ---
 
-## Dark Mode
+## Running the Project Locally
 
-Dark mode is implemented using a **custom Theme Context**, not just Tailwind’s `dark:` classes, so that:
+### Prerequisites
+- Node.js (v16+ recommended)
+- npm or yarn
 
-- Tailwind utilities, MUI components, and Recharts can share the same theme state
-- The current theme is stored in `localStorage` and restored on reload
-- Backgrounds, text, borders, and icons stay readable in both themes
-- Charts (axes, gridlines, tooltips, legend) remain clear in dark mode
-- Tables, inputs, and cards are visually balanced on both themes
+### Installation
+```bash
+npm install
+```
 
-The aim was to make theme switching feel natural and avoid any “flashing” or broken styles.
+### Start Development Server
+```bash
+npm run dev
+```
 
----
+### Build for Production
+```bash
+npm run build
+```
+
+## Design Fidelity Highlights
+This implementation was crafted to closely match the provided design:
+- Layout spacing, gutters, and hierarchy
+- Sidebar + Header alignment and iconography
+- Typography weights and sizes
+- Card elevation and hover states
+- Table layout, row spacing, avatar alignment
+- Chart colors, gridlines, tooltip behavior
+- Dark mode contrast and readability
+
+## Dark Mode System
+Dark mode is implemented using:
+- Custom Theme Context
+- Persistent selection via LocalStorage
+- Unified theme application to:
+  - Tailwind utilities
+  - MUI components
+  - Charts and tooltip elements
+The goal was to avoid “mixed theme” artifacts.
 
 ## Motion & Microinteractions
-
-The interface uses subtle motion to improve perceived quality without being distracting:
-
-- Statistic cards scale slightly on hover
-- Sidebar collapse/expand is animated smoothly
-- Icon buttons provide visual feedback
-- Theme toggle feels responsive and immediate
-
-All animations are intentionally lightweight and focused on user feedback, not on flashy effects.
-
----
+Meaningful UX enhancements include:
+- Card hover scaling
+- Sidebar expand / collapse transition
+- Icon button feedback
+- Smooth theme toggle
+Animations are intentionally subtle — enhancing polish without distraction.
 
 ## Responsiveness
+The layout adapts across:
+- Desktop
+- Laptop
+- Tablet stacking behavior
+- Scroll-safe content areas
+The DataGrid area remains usable and scrollable within constrained heights.
 
-The layout adapts across common screen sizes:
+## Design Decisions
+Why Vite over CRA?
+- Faster dev server
+- Smaller build output
+- Better modern tooling support
 
-- Desktop and widescreen
-- Standard laptop widths
-- Tablet layouts (cards and charts stack or resize)
-- Mobile-friendly stacking where appropriate
+Why Tailwind + MUI together?
+- Tailwind for spacing/layout consistency
+- MUI for DataGrid, icons, surface components
 
-The DataGrid and main content area remain scrollable and usable even on smaller viewports, and the sidebar can be collapsed to save space.
+Why custom theme context instead of pure Tailwind dark mode?
+- MUI + Recharts require shared theme state
+- Prevents desynchronized theme rendering
 
----
+## Challenges Faced
+1. Achieving identical spacing from Figma references
+Solution: measured grid, gap, and padding proportions manually.
+
+2. Dark mode compatibility across libraries
+Solution: unified theme object + conditional overrides.
+
+3. Table styling with avatars & column alignment
+Solution: column renderers + custom cell layout.
+
+4. Responsive sidebar without layout shift
+Solution: width transition + flex recalculation.
+
+## Improvements Made Beyond Base Requirements
+- Added smooth sidebar animation
+- Microinteractions for cards and controls
+- LocalStorage theme persistence
+- Improved chart tooltip readability
+Note: Filter and Sort icons are currently visual placeholders aligned with the design. Column sorting is handled via the DataGrid header interactions.
+
+## Future Scope (If project were extended)
+- Filtering panel with category chips
+- Column-based sorting controls for UX clarity
+- User authentication & role-based dashboard
+- API-driven analytics instead of static data
+- Skeleton loaders & shimmer placeholders
+
+```bash
+src/
+  components/
+  layout/
+  context/
+  data/
+  pages/
+  charts/
+  styles/
+```
