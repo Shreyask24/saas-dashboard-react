@@ -2,14 +2,17 @@ import React from "react";
 import { Box, Typography, Avatar, Divider } from "@mui/material";
 import { activities, notifications, contacts } from "../utils/dashboardData";
 import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 
-export default function RightRail() {
+export default function RightRail({ collapsed }) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
   return (
-    <Box
-      component="aside"
+    <motion.aside
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: collapsed ? 300 : 0, opacity: collapsed ? 0 : 1 }}
+      transition={{ duration: 0.28, ease: "easeInOut" }}
       className="w-72 p-5 space-y-6"
       style={{
         background: isDark ? "#FFFFFF1A" : "#FFFFFF",
@@ -28,7 +31,12 @@ export default function RightRail() {
 
         <Box className="mt-3 space-y-4">
           {notifications.map((n) => (
-            <Box key={n.id} className="flex items-start gap-3">
+            <motion.div
+              key={n.id}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.12 }}
+              className="flex items-start gap-3"
+            >
               <Avatar
                 className="h-4 w-4 text-[16px]"
                 style={{
@@ -47,7 +55,6 @@ export default function RightRail() {
                 >
                   {n.text}
                 </Typography>
-
                 <Typography
                   className="text-xs mt-0.5"
                   sx={{ color: isDark ? "#9CA3AF" : "#6B7280" }}
@@ -55,7 +62,7 @@ export default function RightRail() {
                   {n.time}
                 </Typography>
               </Box>
-            </Box>
+            </motion.div>
           ))}
         </Box>
       </Box>
@@ -73,9 +80,13 @@ export default function RightRail() {
 
         <Box className="mt-3 space-y-4">
           {activities.map((a) => (
-            <Box key={a.id} className="flex items-start gap-3">
+            <motion.div
+              key={a.id}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.12 }}
+              className="flex items-start gap-3"
+            >
               <Avatar src={a.avatar} className="h-4 w-4 rounded-full" />
-
               <Box>
                 <Typography
                   className="text-sm leading-tight"
@@ -83,7 +94,6 @@ export default function RightRail() {
                 >
                   {a.text}
                 </Typography>
-
                 <Typography
                   className="text-xs mt-0.5"
                   sx={{ color: isDark ? "#9CA3AF" : "#6B7280" }}
@@ -91,7 +101,7 @@ export default function RightRail() {
                   {a.time}
                 </Typography>
               </Box>
-            </Box>
+            </motion.div>
           ))}
         </Box>
       </Box>
@@ -109,7 +119,12 @@ export default function RightRail() {
 
         <Box className="mt-3 space-y-3 text-sm">
           {contacts.map((c) => (
-            <Box key={c.id} className="flex items-center justify-between">
+            <motion.div
+              key={c.id}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.12 }}
+              className="flex items-center justify-between"
+            >
               <Box className="flex items-center gap-2">
                 <Avatar src={c.avatar} className="h-4 w-4 rounded-full" />
                 <Typography
@@ -119,10 +134,10 @@ export default function RightRail() {
                   {c.name}
                 </Typography>
               </Box>
-            </Box>
+            </motion.div>
           ))}
         </Box>
       </Box>
-    </Box>
+    </motion.aside>
   );
 }

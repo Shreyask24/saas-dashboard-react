@@ -15,19 +15,23 @@ import { FiberManualRecord, Inventory } from "@mui/icons-material";
 
 import { Box, Typography, Collapse, Avatar } from "@mui/material";
 import { useTheme } from "../context/ThemeContext";
+import { motion } from "framer-motion";
 
 function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
   const [openProfile, setOpenProfile] = useState(false);
   const { theme } = useTheme();
 
+  const isDark = theme === "dark";
+
   return (
-    <Box
-      component="aside"
+    <motion.aside
+      initial={{ width: collapsed ? 80 : 256 }}
+      animate={{ width: collapsed ? 80 : 256 }}
+      transition={{ duration: 0.25, ease: "easeInOut" }}
       className={`
-        min-h-auto flex flex-col border-r transition-all duration-200 overflow-hidden
-        ${collapsed ? "w-20" : "w-64"}
+        min-h-auto flex flex-col border-r overflow-hidden
         ${
-          theme === "dark"
+          isDark
             ? "bg-[#FFFFFF1A] border-zinc-800 text-gray-200"
             : "bg-white border-gray-100 text-gray-800"
         }
@@ -37,7 +41,7 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
       <Box className="px-5 py-4 flex items-center gap-3">
         <Avatar
           className={`text-sm font-semibold ${
-            theme === "dark" ? "bg-white/20 text-white" : "bg-black text-white"
+            isDark ? "bg-white/20 text-white" : "bg-black text-white"
           }`}
         >
           B
@@ -77,30 +81,33 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
       <Box
         className={`
           px-1 text-sm space-y-1
-          ${theme === "dark" ? "text-gray-200" : "text-gray-700"}
+          ${isDark ? "text-gray-200" : "text-gray-700"}
         `}
       >
         {["Overview", "Projects"].map((label, i) => (
-          <Box
+          <motion.div
             key={i}
-            className={`
-              sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-              transition-all duration-150 text-[14px]
-              ${theme === "dark" ? "hover:bg-white/5" : "hover:bg-gray-100"}
-            `}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.12 }}
           >
-            {React.cloneElement(<FiberManualRecord fontSize="small" />, {
-              style: { color: theme === "dark" ? "#E5E5E5" : "#1C1C1C" },
-            })}
+            <Box
+              className={`
+                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+                transition-all duration-150 text-[14px]
+                ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}
+              `}
+            >
+              {React.cloneElement(<FiberManualRecord fontSize="small" />, {
+                style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
+              })}
 
-            {!collapsed && (
-              <Typography
-                sx={{ color: theme === "dark" ? "#F5F5F5" : "#1C1C1C" }}
-              >
-                {label}
-              </Typography>
-            )}
-          </Box>
+              {!collapsed && (
+                <Typography sx={{ color: isDark ? "#F5F5F5" : "#1C1C1C" }}>
+                  {label}
+                </Typography>
+              )}
+            </Box>
+          </motion.div>
         ))}
       </Box>
 
@@ -115,10 +122,11 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
         </Box>
       )}
 
+      {/* DASHBOARDS */}
       <Box
         className={`
           px-1 text-sm space-y-1
-          ${theme === "dark" ? "text-gray-200" : "text-gray-700"}
+          ${isDark ? "text-gray-200" : "text-gray-700"}
         `}
       >
         {[
@@ -148,27 +156,30 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
             page: "courses",
           },
         ].map((item, i) => (
-          <Box
+          <motion.div
             key={i}
-            onClick={() => setActivePage(item.page)}
-            className={`
-              sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-              transition-all duration-150
-              ${theme === "dark" ? "hover:bg-white/10" : "hover:bg-gray-100"}
-            `}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.12 }}
           >
-            {React.cloneElement(item.icon, {
-              style: { color: theme === "dark" ? "#E5E5E5" : "#1C1C1C" },
-            })}
+            <Box
+              onClick={() => setActivePage(item.page)}
+              className={`
+                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+                transition-all duration-150
+                ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
+              `}
+            >
+              {React.cloneElement(item.icon, {
+                style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
+              })}
 
-            {!collapsed && (
-              <Typography
-                sx={{ color: theme === "dark" ? "#F5F5F5" : "#1C1C1C" }}
-              >
-                {item.label}
-              </Typography>
-            )}
-          </Box>
+              {!collapsed && (
+                <Typography sx={{ color: isDark ? "#F5F5F5" : "#1C1C1C" }}>
+                  {item.label}
+                </Typography>
+              )}
+            </Box>
+          </motion.div>
         ))}
       </Box>
 
@@ -189,41 +200,44 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
         <Box
           className={`
             px-1 text-sm space-y-1
-            ${theme === "dark" ? "text-gray-200" : "text-gray-700"}
+            ${isDark ? "text-gray-200" : "text-gray-700"}
           `}
         >
           {/* USER PROFILE EXPANDABLE */}
-          <Box
-            className={`
-              sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-              transition-all duration-150
-              ${theme === "dark" ? "hover:bg-white/10" : "hover:bg-gray-100"}
-            `}
-            onClick={() => setOpenProfile((prev) => !prev)}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.12 }}
           >
-            {React.cloneElement(<Description fontSize="small" />, {
-              style: { color: theme === "dark" ? "#E5E5E5" : "#1C1C1C" },
-            })}
+            <Box
+              className={`
+                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+                transition-all duration-150
+                ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
+              `}
+              onClick={() => setOpenProfile((prev) => !prev)}
+            >
+              {React.cloneElement(<Description fontSize="small" />, {
+                style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
+              })}
 
-            {!collapsed && (
-              <Box className="flex justify-between w-full pr-1">
-                <Typography
-                  sx={{ color: theme === "dark" ? "#F5F5F5" : "#1C1C1C" }}
-                >
-                  User Profile
-                </Typography>
+              {!collapsed && (
+                <Box className="flex justify-between w-full pr-1">
+                  <Typography sx={{ color: isDark ? "#F5F5F5" : "#1C1C1C" }}>
+                    User Profile
+                  </Typography>
 
-                {openProfile ? <ExpandLess /> : <ExpandMore />}
-              </Box>
-            )}
-          </Box>
+                  {openProfile ? <ExpandLess /> : <ExpandMore />}
+                </Box>
+              )}
+            </Box>
+          </motion.div>
 
           {/* COLLAPSE SUBMENU */}
           <Collapse in={!collapsed && openProfile}>
             <Box
               className={`
                 ml-10 flex flex-col text-[13px] space-y-1
-                ${theme === "dark" ? "text-gray-300" : "text-gray-500"}
+                ${isDark ? "text-gray-300" : "text-gray-500"}
               `}
             >
               {[
@@ -237,11 +251,9 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
                   key={i}
                   color="inherit"
                   className={`
-                    cursor-pointer transition
-                    ${
-                      theme === "dark" ? "hover:text-white" : "hover:text-black"
-                    }
-                  `}
+                      cursor-pointer transition
+                      ${isDark ? "hover:text-white" : "hover:text-black"}
+                    `}
                 >
                   {sub}
                 </Typography>
@@ -256,29 +268,32 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
             { icon: <Article fontSize="small" />, label: "Blog" },
             { icon: <Chat fontSize="small" />, label: "Social" },
           ].map((item, i) => (
-            <Box
+            <motion.div
               key={i}
-              className={`
-                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg transition-all
-                ${theme === "dark" ? "hover:bg-white/10" : "hover:bg-gray-100"}
-              `}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.12 }}
             >
-              {React.cloneElement(item.icon, {
-                style: { color: theme === "dark" ? "#E5E5E5" : "#1C1C1C" },
-              })}
+              <Box
+                className={`
+                  sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg transition-all
+                  ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
+                `}
+              >
+                {React.cloneElement(item.icon, {
+                  style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
+                })}
 
-              {!collapsed && (
-                <Typography
-                  sx={{ color: theme === "dark" ? "#F5F5F5" : "#1C1C1C" }}
-                >
-                  {item.label}
-                </Typography>
-              )}
-            </Box>
+                {!collapsed && (
+                  <Typography sx={{ color: isDark ? "#F5F5F5" : "#1C1C1C" }}>
+                    {item.label}
+                  </Typography>
+                )}
+              </Box>
+            </motion.div>
           ))}
         </Box>
       </Box>
-    </Box>
+    </motion.aside>
   );
 }
 
