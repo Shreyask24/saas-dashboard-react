@@ -91,11 +91,12 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
             transition={{ duration: 0.12 }}
           >
             <Box
+              component="div"
               className={`
-                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-                transition-all duration-150 text-[14px]
-                ${isDark ? "hover:bg-white/5" : "hover:bg-gray-100"}
-              `}
+    flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+    transition-all duration-150 text-[14px]
+    ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
+  `}
             >
               {React.cloneElement(<FiberManualRecord fontSize="small" />, {
                 style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
@@ -162,12 +163,13 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
             transition={{ duration: 0.12 }}
           >
             <Box
+              component="div"
               onClick={() => setActivePage(item.page)}
               className={`
-                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-                transition-all duration-150
-                ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
-              `}
+    flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+    transition-all duration-150
+    ${isDark ? "hover:bg-white/20" : "hover:bg-gray-100"}
+  `}
             >
               {React.cloneElement(item.icon, {
                 style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
@@ -209,12 +211,13 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
             transition={{ duration: 0.12 }}
           >
             <Box
-              className={`
-                sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
-                transition-all duration-150
-                ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
-              `}
+              component="div"
               onClick={() => setOpenProfile((prev) => !prev)}
+              className={`
+    flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg
+    transition-all duration-150
+    ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
+  `}
             >
               {React.cloneElement(<Description fontSize="small" />, {
                 style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
@@ -222,11 +225,19 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
 
               {!collapsed && (
                 <Box className="flex justify-between w-full pr-1">
-                  <Typography sx={{ color: isDark ? "#F5F5F5" : "#1C1C1C" }}>
+                  <Typography sx={{ color: isDark ? "#FFFFFF" : "#1C1C1C" }}>
                     User Profile
                   </Typography>
 
-                  {openProfile ? <ExpandLess /> : <ExpandMore />}
+                  {openProfile ? (
+                    <ExpandLess
+                      sx={{ color: isDark ? "#FFFFFF" : "#1C1C1C" }}
+                    />
+                  ) : (
+                    <ExpandMore
+                      sx={{ color: isDark ? "#FFFFFF" : "#1C1C1C" }}
+                    />
+                  )}
                 </Box>
               )}
             </Box>
@@ -274,10 +285,11 @@ function Sidebar({ collapsed, setActivePage, setRightRailCollapsed }) {
               transition={{ duration: 0.12 }}
             >
               <Box
+                component="div"
                 className={`
-                  sidebar-item flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg transition-all
-                  ${isDark ? "hover:bg-white/10" : "hover:bg-gray-100"}
-                `}
+    flex items-center gap-3 mx-2 px-3 py-2 cursor-pointer rounded-lg transition-all
+    ${isDark ? "hover:bg-[#FFFFFF1A]" : "hover:bg-gray-100"}
+  `}
               >
                 {React.cloneElement(item.icon, {
                   style: { color: isDark ? "#E5E5E5" : "#1C1C1C" },
