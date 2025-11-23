@@ -136,10 +136,7 @@ Note: Filter and Sort icons are currently visual placeholders aligned with the d
 ```bash
 src/
   components/
-  layout/
   context/
-  data/
   pages/
-  charts/
-  styles/
+  utils/
 ```
