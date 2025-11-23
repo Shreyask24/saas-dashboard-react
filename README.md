@@ -79,10 +79,10 @@ The goal was to avoid “mixed theme” artifacts.
 ## Motion & Microinteractions
 Meaningful UX enhancements include:
 - Card hover scaling
-- Sidebar expand / collapse transition
-- Icon button feedback
-- Smooth theme toggle
-Animations are intentionally subtle — enhancing polish without distraction.
+- Sidebar expand / collapse animation using Framer Motion
+- Right Rail slide-in / slide-out animation
+- Toolbar & header icons with tap/hover motion
+- Smooth theme toggle transition
 
 ## Responsiveness
 The layout adapts across:
@@ -120,18 +120,20 @@ Solution: column renderers + custom cell layout.
 Solution: width transition + flex recalculation.
 
 ## Improvements Made Beyond Base Requirements
-- Added smooth sidebar animation
-- Microinteractions for cards and controls
-- LocalStorage theme persistence
+- Sidebar width animation (Framer Motion)
+- Right Rail slide-in animation
+- Toolbar and header icon microinteractions
+- Functional status filtering & date sorting
+- Real pagination using custom slot
+- Dark theme persistence
 - Improved chart tooltip readability
-Note: Filter and Sort icons are currently visual placeholders aligned with the design. Column sorting is handled via the DataGrid header interactions.
 
 ## Future Scope (If project were extended)
-- Filtering panel with category chips
-- Column-based sorting controls for UX clarity
-- User authentication & role-based dashboard
-- API-driven analytics instead of static data
-- Skeleton loaders & shimmer placeholders
+- Advanced filtering panel (status, date range)
+- Multi-column sort indicators
+- API-driven data instead of static JSON
+- Role-based dashboard access
+- Skeleton loaders & shimmer states
 
 ```bash
 src/
